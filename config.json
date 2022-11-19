@@ -1,0 +1,9 @@
+{
+  "log_file": "tools.log",
+  "tools": {
+    "qt-xy-tool": {
+      "schedule": "0 10 * * ?",
+      "active": true
+    }
+  }
+}
