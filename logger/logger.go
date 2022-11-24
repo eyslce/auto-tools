@@ -42,8 +42,8 @@ func getLogWriter(logfile string) zapcore.WriteSyncer {
 		MaxSize:      300,
 		MaxAge:       30,
 		MaxBackups:   10,
-		Compress:     true,
 		DailyRolling: true,
+		LocalTime:    true,
 	})
 }
 
