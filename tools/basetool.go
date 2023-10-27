@@ -1,19 +1,33 @@
 package tools
 
 import (
+	"auto-tools/config"
 	"auto-tools/logger"
 	"github.com/go-rod/rod"
 	"github.com/go-rod/rod/lib/launcher"
 	"github.com/go-rod/stealth"
+	"github.com/samber/lo"
+	"time"
 )
 
 type BaseTool struct {
 }
 
-func (b *BaseTool) getBrowserPage() *rod.Page {
-	path, _ := launcher.LookPath()
-	u, err := launcher.New().
-		//Headless(false).
+func (b *BaseTool) getBrowserPage(debug bool) *rod.Page {
+	path := config.GetBrowserPath()
+	if lo.IsEmpty(path) {
+		lookPath, _ := launcher.LookPath()
+		path = lookPath
+	}
+	l := launcher.New()
+	if debug {
+		l.Headless(false)
+	}
+	userDataDir := config.GetBrowserUserDataDir()
+	if lo.IsNotEmpty(userDataDir) {
+		l.UserDataDir(userDataDir)
+	}
+	u, err := l.
 		Bin(path).Launch()
 	if err != nil {
 		logger.Errorf("launch browser err:%s", err)
@@ -21,10 +35,12 @@ func (b *BaseTool) getBrowserPage() *rod.Page {
 	}
 
 	browser := rod.New().
-		//SlowMotion(time.Second).
 		Trace(true).
 		Logger(logger.GetLoggerFactory()).
 		ControlURL(u)
+	if debug {
+		browser.SlowMotion(time.Second)
+	}
 
 	err = browser.Connect()
 	if err != nil {

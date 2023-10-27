@@ -30,3 +30,11 @@ func IsToolActive(name string) bool {
 func GetLogFile() string {
 	return viper.GetString("log_file")
 }
+
+func GetBrowserPath() string {
+	return viper.GetString("browser_path")
+}
+
+func GetBrowserUserDataDir() string {
+	return viper.GetString("browser_user_data_dir")
+}
