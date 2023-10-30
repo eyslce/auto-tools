@@ -14,7 +14,7 @@ func InitConfig(configFile string) {
 		fmt.Println("Can't read config:", err)
 		os.Exit(1)
 	}
-
+	viper.WatchConfig()
 }
 
 func GetToolSchedule(name string) string {
@@ -37,4 +37,8 @@ func GetBrowserPath() string {
 
 func GetBrowserUserDataDir() string {
 	return viper.GetString("browser_user_data_dir")
+}
+
+func GetCRMUrl() string {
+	return viper.GetString("crm_url")
 }
