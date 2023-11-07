@@ -35,10 +35,6 @@ func GetBrowserPath() string {
 	return viper.GetString("browser_path")
 }
 
-func GetBrowserUserDataDir() string {
-	return viper.GetString("browser_user_data_dir")
-}
-
 func GetCRMUrl() string {
 	return viper.GetString("crm_url")
 }

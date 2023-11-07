@@ -1,7 +1,6 @@
 {
   "log_file": "tools.log",
-  "browser_path": "microsoft-edge",
-  "browser_user_data_dir": "/home/cjj/.config/microsoft-edge/",
+  "browser_path": "",
   "tools": {
     "qt-xy-tool": {
       "schedule": "0 10 * * ?",

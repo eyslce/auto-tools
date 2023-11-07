@@ -19,13 +19,9 @@ func (b *BaseTool) getBrowserPage(debug bool) *rod.Page {
 		lookPath, _ := launcher.LookPath()
 		path = lookPath
 	}
-	l := launcher.New()
+	l := launcher.NewUserMode()
 	if debug {
 		l.Headless(false)
-	}
-	userDataDir := config.GetBrowserUserDataDir()
-	if lo.IsNotEmpty(userDataDir) {
-		l.UserDataDir(userDataDir)
 	}
 	u, err := l.
 		Bin(path).Launch()
