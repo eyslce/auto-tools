@@ -19,19 +19,16 @@ func (b *BaseTool) getBrowserPage(debug bool) *rod.Page {
 		lookPath, _ := launcher.LookPath()
 		path = lookPath
 	}
-	l := launcher.NewUserMode()
-	if debug {
-		l.Headless(false)
-	}
-	u, err := l.
-		Bin(path).Launch()
+	l := launcher.NewUserMode().Headless(!debug)
+	u, err := l.Bin(path).
+		Leakless(true).Launch()
 	if err != nil {
 		logger.Errorf("launch browser err:%s", err)
 		return nil
 	}
 
 	browser := rod.New().
-		Trace(true).
+		Trace(debug).
 		Logger(logger.GetLoggerFactory()).
 		ControlURL(u)
 	if debug {
