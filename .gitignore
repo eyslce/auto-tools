@@ -15,7 +15,6 @@
 # vendor/
 
 tools/qtxytool.go
-tools/qtcrmtool.go
 
 .idea
 auto-tools

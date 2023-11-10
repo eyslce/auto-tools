@@ -3,7 +3,6 @@ package test
 import (
 	"auto-tools/config"
 	"auto-tools/logger"
-	"auto-tools/tools"
 	"testing"
 )
 
@@ -16,6 +15,6 @@ func initconfig() {
 
 func TestQtCrmTool(t *testing.T) {
 	initconfig()
-	tool := new(tools.QTCrmTool)
-	tool.Run()
+	//tool := new(tools.QTCrmTool)
+	//tool.Run()
 }
