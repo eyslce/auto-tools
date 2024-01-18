@@ -48,13 +48,13 @@ func (t *QTCrmTool) Run() {
 	pageWithCancel.MustElement("#customfield_11607").MustSelect("研发类")
 	//
 	pageWithCancel.MustElement("div[data-customfieldid=\"customfield_11045\"]").MustClick()
-	pageWithCancel.MustElement("#react-select-6-option-5").MustClick()
+	pageWithCancel.MustElement("#react-select-6-option-2").MustClick()
 	//
 	pageWithCancel.MustElement("div[data-customfieldid=\"customfield_11046\"]").MustClick()
-	pageWithCancel.MustElement("#react-select-8-option-12").MustClick()
+	pageWithCancel.MustElement("#react-select-8-option-0").MustClick()
 	//
 	pageWithCancel.MustElement("div[data-customfieldid=\"customfield_11100\"]").MustClick()
-	pageWithCancel.MustElement("#react-select-10-option-6").MustClick()
+	pageWithCancel.MustElement("#react-select-10-option-9").MustClick()
 	//e := pageWithCancel.MustElement("div.sr-rs__menu.css-9g7j0m-menu")
 	//fmt.Print(e.HTML())
 
