@@ -4,6 +4,7 @@ import (
 	"auto-tools/logger"
 	"auto-tools/utils"
 	"context"
+	"fmt"
 	"time"
 )
 
@@ -35,7 +36,7 @@ func (b *BingTools) RunE(useMobile bool) {
 	if useMobile {
 		b.EmulateDevice(pg)
 	}
-	baseurl := "https://cn.bing.com/search?q=1"
+	baseurl := fmt.Sprintf("https://cn.bing.com/search?q=%s", utils.RandomHanZi(2))
 	err := pg.Navigate(baseurl)
 	if err != nil {
 		logger.Errorf("bing-tool run err:%s", err)
