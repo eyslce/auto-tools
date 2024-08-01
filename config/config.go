@@ -38,3 +38,7 @@ func GetBrowserPath() string {
 func GetCRMUrl() string {
 	return viper.GetString("crm_url")
 }
+
+func GetOAUrl() string {
+	return viper.GetString("oa_url")
+}

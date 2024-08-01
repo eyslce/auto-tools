@@ -36,9 +36,7 @@ func (b *BaseTool) getBrowserPage(debug bool) *rod.Page {
 		Trace(true).
 		Logger(logger.GetLoggerFactory()).
 		ControlURL(u)
-	if debug {
-		browser.SlowMotion(time.Millisecond * 100)
-	}
+	browser.SlowMotion(time.Millisecond * 100)
 
 	err = browser.Connect()
 	if err != nil {

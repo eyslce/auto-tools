@@ -13,8 +13,10 @@ func Start() {
 	//初始化应用
 	initApp()
 	defer logger.Sync()
+	tool := new(tools.QTCrmTool)
+	tool.Run()
 	//
-	run()
+	//run()
 }
 
 func run() {

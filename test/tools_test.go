@@ -25,3 +25,9 @@ func TestEbookTool(t *testing.T) {
 	tool := new(tools.EbookTool)
 	tool.Run()
 }
+
+func TestQtOATool(t *testing.T) {
+	initconfig()
+	tool := new(tools.OaTools)
+	tool.Run()
+}

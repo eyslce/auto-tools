@@ -19,3 +19,4 @@ tools/qtxytool.go
 .idea
 auto-tools
 *.log
+config.json
