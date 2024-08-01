@@ -1,7 +1,9 @@
 package main
 
-import "auto-tools/app"
+import (
+	"auto-tools/cmd"
+)
 
 func main() {
-	app.Start()
+	cmd.Execute()
 }

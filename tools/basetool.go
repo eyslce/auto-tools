@@ -54,21 +54,25 @@ func (b *BaseTool) getBrowserPage(debug bool) *rod.Page {
 	return page
 }
 
-func (b *BaseTool) getDocument(pg *rod.Page, url string) *goquery.Document {
+func (b *BaseTool) EmulateDevice(pg *rod.Page) {
 	devs := []devices.Device{
 		devices.Pixel2, devices.Pixel2XL, devices.IPad, devices.IPadMini, devices.IPadPro,
 		devices.IPhoneX, devices.IPhone4, devices.IPhone5orSE, devices.IPhone6or7or8,
 		devices.IPhone6or7or8Plus, devices.Nexus6, devices.GalaxyNote3, devices.Nexus7,
 		devices.Nexus6P, devices.Nexus10,
 	}
-	rand.Seed(time.Now().UnixMicro())
 	index := rand.Intn(15)
 	err := pg.Emulate(devs[index])
 	if err != nil {
 		logger.Errorf(fmt.Sprintf("scan cnvd err:%s", err))
-		return nil
 	}
-	err = pg.Navigate(url)
+}
+
+func (b *BaseTool) getDocument(pg *rod.Page, url string, useMobile bool) *goquery.Document {
+	if useMobile {
+		b.EmulateDevice(pg)
+	}
+	err := pg.Navigate(url)
 	if err != nil {
 		logger.Errorf("nav to url:%s", err)
 		return nil
@@ -83,7 +87,6 @@ func (b *BaseTool) getDocument(pg *rod.Page, url string) *goquery.Document {
 		logger.Errorf("get page html err:%s", err)
 		return nil
 	}
-	fmt.Print(html)
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
 		logger.Errorf("get document err:%s", err)

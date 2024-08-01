@@ -25,7 +25,7 @@ func (t *EbookTool) Run() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 	defer cancel()
 	pg := browserPage.Context(ctx)
-	doc := t.getDocument(pg, "https://m.31xs.com/9/9183/7336306.html")
+	doc := t.getDocument(pg, "https://m.31xs.com/9/9183/7336306.html", false)
 	if doc == nil {
 		return
 	}

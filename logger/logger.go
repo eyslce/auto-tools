@@ -5,6 +5,7 @@ import (
 	"github.com/eyslce/lumberjack"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"os"
 	"time"
 )
 
@@ -37,14 +38,15 @@ func getEncoder() zapcore.Encoder {
 }
 
 func getLogWriter(logfile string) zapcore.WriteSyncer {
-	return zapcore.AddSync(&lumberjack.Logger{
+	return zapcore.NewMultiWriteSyncer(zapcore.AddSync(&lumberjack.Logger{
 		Filename:     logfile,
 		MaxSize:      300,
 		MaxAge:       30,
 		MaxBackups:   10,
 		DailyRolling: true,
 		LocalTime:    true,
-	})
+	}), zapcore.Lock(os.Stdout))
+
 }
 
 func Info(args ...interface{}) {

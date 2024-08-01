@@ -31,3 +31,10 @@ func TestQtOATool(t *testing.T) {
 	tool := new(tools.OaTools)
 	tool.Run()
 }
+
+func TestBingTool(t *testing.T) {
+	initconfig()
+	tool := new(tools.BingTools)
+	tool.RunE(false)
+	tool.RunE(true)
+}
