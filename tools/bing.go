@@ -5,6 +5,7 @@ import (
 	"auto-tools/utils"
 	"context"
 	"fmt"
+	"github.com/go-rod/rod/lib/proto"
 	"time"
 )
 
@@ -26,18 +27,23 @@ func (b *BingTools) Run() {
 }
 
 func (b *BingTools) RunE(useMobile bool) {
-	browserPage := b.getBrowserPage(true)
-	if browserPage == nil {
+	browser := b.getBrowser(true)
+	if browser == nil {
 		return
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
 	defer cancel()
+	browserPage, err := browser.Page(proto.TargetCreateTarget{URL: "about:blank"})
+	if err != nil {
+		logger.Errorf("bing-tool run err:%s", err)
+		return
+	}
 	pg := browserPage.Context(ctx)
 	if useMobile {
 		b.EmulateDevice(pg)
 	}
 	baseurl := fmt.Sprintf("https://cn.bing.com/search?q=%s", utils.RandomHanZi(2))
-	err := pg.Navigate(baseurl)
+	err = pg.Navigate(baseurl)
 	if err != nil {
 		logger.Errorf("bing-tool run err:%s", err)
 		return

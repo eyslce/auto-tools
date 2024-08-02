@@ -18,13 +18,13 @@ import (
 type BaseTool struct {
 }
 
-func (b *BaseTool) getBrowserPage(debug bool) *rod.Page {
+func (b *BaseTool) getBrowser(headless bool) *rod.Browser {
 	path := config.GetBrowserPath()
 	if lo.IsEmpty(path) {
 		lookPath, _ := launcher.LookPath()
 		path = lookPath
 	}
-	l := launcher.NewUserMode().Headless(!debug)
+	l := launcher.NewUserMode().Headless(!headless)
 	u, err := l.Bin(path).
 		Leakless(true).Launch()
 	if err != nil {
@@ -37,20 +37,25 @@ func (b *BaseTool) getBrowserPage(debug bool) *rod.Page {
 		Logger(logger.GetLoggerFactory()).
 		ControlURL(u)
 	browser.SlowMotion(time.Millisecond * 100)
-
 	err = browser.Connect()
 	if err != nil {
-		logger.Errorf("launch browser err:%s", err)
+		logger.Errorf("connect browser err:%s", err)
 		return nil
 	}
+	return browser
+}
 
+func (b *BaseTool) getBrowserPage(debug bool) *rod.Page {
+	browser := b.getBrowser(debug)
+	if browser == nil {
+		return nil
+	}
 	//防止机器人检测
 	page, err := stealth.Page(browser)
 	if err != nil {
 		logger.Errorf("launch browser err:%v", err)
 		return nil
 	}
-
 	return page
 }
 

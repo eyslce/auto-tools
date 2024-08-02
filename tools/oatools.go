@@ -23,23 +23,19 @@ func (o *OaTools) GetName() string {
 }
 
 func (o *OaTools) Run() {
-	browserPage := o.getBrowserPage(true)
-	if browserPage == nil {
+	browser := o.getBrowser(true)
+	if browser == nil {
 		return
 	}
 	//设置下面发起的所有操作10秒超时，防止长时间等待卡住
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 	defer cancel()
-	pageWithCancel := browserPage.Context(ctx)
 
 	oaUrl := config.GetOAUrl()
-	err := pageWithCancel.Navigate(oaUrl)
-	if err != nil {
-		logger.Errorf("oa-tool run err:%s", err)
-		return
-	}
+	browserPage := browser.MustPage(oaUrl)
+	pageWithCancel := browserPage.Context(ctx)
 
-	err = pageWithCancel.WaitLoad()
+	err := pageWithCancel.WaitLoad()
 	if err != nil {
 		logger.Errorf("oa-tool run err:%s", err)
 		return
@@ -59,9 +55,14 @@ func (o *OaTools) Run() {
 		if i == 3 {
 			element.MustClick()
 			time.Sleep(1 * time.Second)
+			es := pageWithCancel.MustElements("input.ant-input")
+			es[1].MustInput("cwpp")
+			buttons := pageWithCancel.MustElements("button.ant-btn.ant-btn-ghost.ant-btn-icon-only.wea-input-focus-btn")
+			buttons[1].MustClick()
+			time.Sleep(1 * time.Second)
 			firstTasks := pageWithCancel.MustElements("div.wea-url")
 			for _, e := range firstTasks {
-				if strings.Contains(e.MustText(), "Cloud native data plane") {
+				if strings.Contains(e.MustText(), "CWPP") {
 					e.MustClick()
 					break
 				}
@@ -72,7 +73,7 @@ func (o *OaTools) Run() {
 			time.Sleep(1 * time.Second)
 			firstTasks := pageWithCancel.MustElements("div.wea-url")
 			for _, e := range firstTasks {
-				if strings.Contains(e.MustText(), "云原生数据面平台") {
+				if strings.Contains(e.MustText(), "资配漏补") {
 					e.MustClick()
 					break
 				}
