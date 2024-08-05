@@ -61,10 +61,9 @@ func (b *BaseTool) getBrowserPage(debug bool) *rod.Page {
 
 func (b *BaseTool) EmulateDevice(pg *rod.Page) {
 	devs := []devices.Device{
-		devices.Pixel2, devices.Pixel2XL, devices.IPad, devices.IPadMini, devices.IPadPro,
-		devices.IPhoneX, devices.IPhone4, devices.IPhone5orSE, devices.IPhone6or7or8,
-		devices.IPhone6or7or8Plus, devices.Nexus6, devices.GalaxyNote3, devices.Nexus7,
-		devices.Nexus6P, devices.Nexus10,
+		devices.Pixel2, devices.Pixel2XL, devices.IPhoneX, devices.IPhone4, devices.IPhone5orSE,
+		devices.IPhone6or7or8, devices.IPhone6or7or8Plus, devices.Nexus6, devices.GalaxyNote3,
+		devices.Nexus7, devices.Nexus6P, devices.Nexus10,
 	}
 	index := rand.Intn(15)
 	err := pg.Emulate(devs[index])

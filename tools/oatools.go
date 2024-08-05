@@ -93,14 +93,20 @@ func (o *OaTools) Run() {
 	}
 	pageWithCancel.MustElement("#field18643_0").MustInput("风险app代码开发")
 	pageWithCancel.MustElement("div.wea-date-picker").MustClick()
+	t := time.Now()
+	date := t.Format("2006-01-02")
+	pageWithCancel.MustElement("input.ant-calendar-input").MustInput(date)
 	dateElements := pageWithCancel.MustElements("div.ant-calendar-date")
 	for _, element := range dateElements {
 		attr := element.MustAttribute("aria-disabled")
 		if attr == nil || *attr != "false" {
 			continue
 		}
-		day := time.Now().Day()
-		//day := 25
+		attr = element.MustAttribute("aria-selected")
+		if attr == nil || *attr != "true" {
+			continue
+		}
+		day := t.Day()
 		if element.MustText() == strconv.Itoa(day) {
 			element.MustClick()
 			break
