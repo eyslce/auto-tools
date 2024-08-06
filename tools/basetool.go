@@ -65,7 +65,7 @@ func (b *BaseTool) EmulateDevice(pg *rod.Page) {
 		devices.IPhone6or7or8, devices.IPhone6or7or8Plus, devices.Nexus6, devices.GalaxyNote3,
 		devices.Nexus7, devices.Nexus6P, devices.Nexus10,
 	}
-	index := rand.Intn(15)
+	index := rand.Intn(len(devs))
 	err := pg.Emulate(devs[index])
 	if err != nil {
 		logger.Errorf(fmt.Sprintf("scan cnvd err:%s", err))

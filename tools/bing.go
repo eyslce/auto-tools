@@ -59,6 +59,7 @@ func (b *BingTools) RunE(useMobile bool) {
 			word := utils.RandomHanZi(2)
 			pg.MustElement("#sb_form_q").MustSelectAllText().MustInput("")
 			pg.MustElement("#sb_form_q").MustInput(word)
+			time.Sleep(100 * time.Millisecond)
 			pg.MustElement("#sb_form_go").MustClick()
 			time.Sleep(5 * time.Second)
 		}
