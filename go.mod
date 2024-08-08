@@ -1,11 +1,13 @@
 module auto-tools
 
-go 1.19
+go 1.21
+
+toolchain go1.22.2
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/eyslce/lumberjack v1.0.0
-	github.com/go-rod/rod v0.112.0
+	github.com/go-rod/rod v0.116.2
 	github.com/go-rod/stealth v0.4.8
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/samber/lo v1.38.1
@@ -28,9 +30,11 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
+	github.com/ysmood/fetchup v0.2.3 // indirect
 	github.com/ysmood/goob v0.4.0 // indirect
-	github.com/ysmood/gson v0.7.1 // indirect
-	github.com/ysmood/leakless v0.8.0 // indirect
+	github.com/ysmood/got v0.40.0 // indirect
+	github.com/ysmood/gson v0.7.3 // indirect
+	github.com/ysmood/leakless v0.9.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	golang.org/x/exp v0.0.0-20220303212507-bbda1eaf7a17 // indirect
