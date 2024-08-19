@@ -70,7 +70,7 @@ func (b *BaseTool) EmulateDevice(pg *rod.Page) {
 	logger.Infof("emulate device:%v", device)
 	err := pg.Emulate(device)
 	if err != nil {
-		logger.Errorf(fmt.Sprintf("scan cnvd err:%s", err))
+		logger.Errorf(fmt.Sprintf("emulate device err:%s", err))
 	}
 }
 

@@ -40,11 +40,7 @@ func (b *BingTools) RunE(useMobile bool) {
 	}
 	pg := browserPage.Context(ctx)
 	if useMobile {
-		err := pg.Emulate(utils.IPhone11)
-		if err != nil {
-			logger.Errorf(fmt.Sprintf("bing-tool run emulate err:%s", err))
-			return
-		}
+		b.EmulateDevice(pg)
 	}
 	baseurl := fmt.Sprintf("https://cn.bing.com/search?q=%s", utils.RandomHanZi(2))
 	err = pg.Navigate(baseurl)
