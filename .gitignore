@@ -18,3 +18,4 @@
 auto-tools
 *.log
 config.json
+.vscode

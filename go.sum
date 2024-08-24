@@ -65,6 +65,8 @@ github.com/envoyproxy/go-control-plane v0.9.9-0.20201210154907-fd9021fe5dad/go.m
 github.com/envoyproxy/protoc-gen-validate v0.1.0/go.mod h1:iSmxcyjqTsJpI2R4NaDN7+kN2VEUnK/pcBlmesArF7c=
 github.com/eyslce/lumberjack v1.0.0 h1:t5Ibc5+NKb/qmzNiu+gxDN7Yfz3UigXTB032a6PomiU=
 github.com/eyslce/lumberjack v1.0.0/go.mod h1:GbZlooX+LUBPSPs3vFzp6Fjre76YCL4m9ZjuxT59dsk=
+github.com/eyslce/lumberjack v1.0.4 h1:zy4ikCV1FnO3k7jA+IKNycIGC0ovoLcwIRBMQcTQBm0=
+github.com/eyslce/lumberjack v1.0.4/go.mod h1:GbZlooX+LUBPSPs3vFzp6Fjre76YCL4m9ZjuxT59dsk=
 github.com/frankban/quicktest v1.14.3 h1:FJKSZTDHjyhriyC81FLQ0LY93eSai0ZyR/ZIkd3ZUKE=
 github.com/frankban/quicktest v1.14.3/go.mod h1:mgiwOwqx65TmIk1wJ6Q7wvnVMocbUorkibMOrVTHZps=
 github.com/fsnotify/fsnotify v1.5.4 h1:jRbGcIw6P2Meqdwuo0H1p6JVLbL5DHKAKlYndzMwVZI=
