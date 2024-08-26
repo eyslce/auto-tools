@@ -115,7 +115,7 @@ func (o *OaTools) Run() {
 	pageWithCancel.MustElement("#field13396_0").MustInput("8")
 	buttons := pageWithCancel.MustElements("div.wf-req-top-button")
 	for _, button := range buttons {
-		if button.MustText() == "保 存" {
+		if button.MustText() == "提 交" {
 			button.MustClick()
 			break
 		}
