@@ -35,6 +35,7 @@ func (b *BaseTool) getBrowser(headless bool) *rod.Browser {
 	browser := rod.New().
 		Trace(true).
 		Logger(logger.GetLoggerFactory()).
+		DefaultDevice(devices.Clear).
 		ControlURL(u)
 	browser.SlowMotion(time.Millisecond * 100)
 	err = browser.Connect()
