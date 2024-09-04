@@ -3,7 +3,6 @@ package cmd
 import (
 	"auto-tools/config"
 	"auto-tools/logger"
-	"flag"
 	"github.com/spf13/cobra"
 	"log"
 	"os"
@@ -24,14 +23,16 @@ func Execute() {
 
 func initApp() {
 	//初始化配置
-	configFile := flag.String("c", "config.json", "config file path")
-	flag.Parse()
-	config.InitConfig(*configFile)
+	configFile := rootCmd.PersistentFlags().Lookup("config").Value.String()
+	config.InitConfig(configFile)
 	//初始化日志
 	logfile := config.GetLogFile()
 	logger.InitLogger(logfile)
 }
 
 func init() {
+	rootCmd.PersistentFlags().StringP("config", "c", "config.json", "config file path")
+	rootCmd.AddCommand(oacmd)
+	rootCmd.AddCommand(bingcmd)
 	cobra.OnInitialize(initApp)
 }
