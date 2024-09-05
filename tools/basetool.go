@@ -24,7 +24,7 @@ func (b *BaseTool) getBrowser(headless bool) *rod.Browser {
 		lookPath, _ := launcher.LookPath()
 		path = lookPath
 	}
-	l := launcher.NewUserMode().Headless(!headless)
+	l := launcher.NewUserMode().Headless(headless)
 	u, err := l.Bin(path).
 		Leakless(true).Launch()
 	if err != nil {

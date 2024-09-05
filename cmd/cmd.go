@@ -21,6 +21,10 @@ var bingcmd = &cobra.Command{
 	Long:  `Bing command line tool`,
 	Run: func(cmd *cobra.Command, args []string) {
 		tool := new(tools.BingTools)
+		if len(args) > 0 {
+			tool.RunE(true)
+			return
+		}
 		tool.RunE(false)
 	},
 }

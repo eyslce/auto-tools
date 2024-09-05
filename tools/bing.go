@@ -27,7 +27,7 @@ func (b *BingTools) Run() {
 }
 
 func (b *BingTools) RunE(useMobile bool) {
-	browser := b.getBrowser(true)
+	browser := b.getBrowser(false)
 	if browser == nil {
 		return
 	}

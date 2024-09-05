@@ -23,7 +23,7 @@ func (o *OaTools) GetName() string {
 }
 
 func (o *OaTools) Run() {
-	browser := o.getBrowser(true)
+	browser := o.getBrowser(false)
 	if browser == nil {
 		return
 	}
