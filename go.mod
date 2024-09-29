@@ -1,6 +1,6 @@
 module auto-tools
 
-go 1.21
+go 1.22
 
 toolchain go1.22.2
 
@@ -9,6 +9,7 @@ require (
 	github.com/eyslce/lumberjack v1.0.4
 	github.com/go-rod/rod v0.116.2
 	github.com/go-rod/stealth v0.4.8
+	github.com/ppdxzz/go-holiday v1.0.0
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/samber/lo v1.38.1
 	github.com/spf13/cobra v1.8.1

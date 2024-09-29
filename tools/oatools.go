@@ -4,6 +4,7 @@ import (
 	"auto-tools/config"
 	"auto-tools/logger"
 	"context"
+	"github.com/ppdxzz/go-holiday/holiday"
 	"strconv"
 	"strings"
 	"time"
@@ -23,6 +24,17 @@ func (o *OaTools) GetName() string {
 }
 
 func (o *OaTools) Run() {
+	t := time.Now()
+	date := t.Format("2006-01-02")
+	weekday, err := holiday.IsWeekday(date)
+	if err != nil {
+		logger.Errorf("oa-tool run err:%s", err)
+		return
+	}
+	if !weekday {
+		logger.Warn("oa-tool %s is not weekday", date)
+		return
+	}
 	browser := o.getBrowser(false)
 	if browser == nil {
 		return
@@ -35,7 +47,7 @@ func (o *OaTools) Run() {
 	browserPage := browser.MustPage(oaUrl)
 	pageWithCancel := browserPage.Context(ctx)
 
-	err := pageWithCancel.WaitLoad()
+	err = pageWithCancel.WaitLoad()
 	if err != nil {
 		logger.Errorf("oa-tool run err:%s", err)
 		return
@@ -93,8 +105,7 @@ func (o *OaTools) Run() {
 	}
 	pageWithCancel.MustElement("#field18643_0").MustInput("风险app代码开发")
 	pageWithCancel.MustElement("div.wea-date-picker").MustClick()
-	t := time.Now()
-	date := t.Format("2006-01-02")
+
 	pageWithCancel.MustElement("input.ant-calendar-input").MustInput(date)
 	dateElements := pageWithCancel.MustElements("div.ant-calendar-date")
 	for _, element := range dateElements {
